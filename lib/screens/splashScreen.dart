@@ -12,9 +12,9 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
         splash: 'assets/images/download.png',
-        splashIconSize: 800,
+        splashIconSize: 200,
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.leftToRight,
-        backgroundColor: KColors.primaryColor, nextScreen: const Login());
+        backgroundColor: Colors.white, nextScreen: const Login());
   }
 }

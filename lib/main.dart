@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scanner_app/config/colors.dart';
 import 'package:scanner_app/config/theme.dart';
-import 'package:scanner_app/screens/login.dart';
 import 'package:scanner_app/screens/splashScreen.dart';
 
 void main() {
