@@ -19,8 +19,8 @@ class _ScannerState extends State<Scanner> {
   final QRRepo _qrRepo = QRRepo();
   bool _isLoading = false;
 
-  final MobileScannerController _mobileScannerController = MobileScannerController(
-  facing: CameraFacing.back, torchEnabled: false);
+  final MobileScannerController _mobileScannerController =
+      MobileScannerController(facing: CameraFacing.back, torchEnabled: false);
 
   @override
   void dispose() {
@@ -34,18 +34,23 @@ class _ScannerState extends State<Scanner> {
       _isLoading = true;
     });
     dynamic qrParams = {
-      "qr_text": qr_text,
+      "qr_text": qr_text.replaceAll("Reference:", "").trim(),
       "user_id": widget.userId,
     };
 
     try {
       dynamic res = await _qrRepo.scan_qr(qrParams);
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) =>
-              res['resp_code'] == '00' ? const Success() : Error(message: res['resp_desc'],)));
+          builder: (BuildContext context) => res['resp_code'] == '00'
+              ? Success(userId: widget.userId, details: res['details'])
+              : Error(
+                  userId: widget.userId,
+                  response: res,
+                )));
     } catch (e) {
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => const Error(message: 'Sorry an error occured')));
+          builder: (BuildContext context) =>
+              Error(userId: widget.userId, response: null)));
     } finally {
       setState(() {
         _isLoading = false;
