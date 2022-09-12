@@ -26,8 +26,8 @@ class _LoginState extends State<Login> {
         _isLoading = true;
       });
       dynamic authParams = {
-        "username": _usernameController.value.text,
-        "password": _passwordController.value.text,
+        "username": _usernameController.value.text.trim(),
+        "password": _passwordController.value.text.trim(),
         "src": "APP"
       };
 
@@ -149,28 +149,14 @@ class _LoginState extends State<Login> {
   Widget _loginBtn() {
     return SizedBox(
       width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          TextButton(
-              onPressed: _login,
-              style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                  backgroundColor: KColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.circular(8))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Text('Login'),
-                  Icon(Icons.arrow_right_alt_rounded)
-                ],
-              ))
-        ],
-      ),
+      height: 45,
+      child: TextButton.icon(
+          onPressed: _login,
+          icon: const Icon(Icons.qr_code_scanner_rounded),
+          style: TextButton.styleFrom(
+              primary: Colors.white,
+              backgroundColor: KColors.primaryColor),
+          label: Text('Login')),
     );
   }
 }

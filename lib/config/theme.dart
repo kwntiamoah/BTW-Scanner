@@ -7,7 +7,7 @@ class DefaultBorder {
 
   static InputBorder outlinedBorder = OutlineInputBorder(
       borderSide: BorderSide(width: .8, color: KColors.primaryColor),
-      borderRadius: BorderRadius.circular(8));
+      borderRadius: BorderRadius.circular(5));
 }
 
 class EnabledBorder {}
@@ -30,7 +30,7 @@ class KInputDecorationTheme {
 class KTextTheme {
   static TextTheme textTheme = TextTheme(
       headline1: TextStyle(
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w600,
           fontSize: 16,
           color: KColors.darkColor),
       bodyText1: TextStyle(

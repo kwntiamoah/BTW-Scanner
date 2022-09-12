@@ -12,6 +12,7 @@ class AuthRepo {
     try {
       dynamic res = await http.post(Uri.parse('$url/authenticate_user'),
           headers: headers, body: encode);
+      print(res.body);
       return jsonDecode(res.body);
     } catch (e) {
       rethrow;
