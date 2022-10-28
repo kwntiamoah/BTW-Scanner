@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:scanner_app/config/colors.dart';
+import 'package:scanner_app/generated/assets.dart';
 import 'package:scanner_app/screens/scanner.dart';
 
 class Success extends StatelessWidget {
@@ -12,7 +13,6 @@ class Success extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(details);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -20,7 +20,7 @@ class Success extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Lottie.asset('assets/lottie/success.json', height: 250),
+            Lottie.asset(Assets.lottieSuccess, height: 250),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 25),
               // decoration: BoxDecoration(

@@ -37,39 +37,43 @@ class _ScannerState extends State<Scanner> {
       _isLoading = true;
     });
     dynamic qrParams = {
-      "qr_text": qr_text.replaceAll("Reference:", "").trim(),
+      "qr_text": src == 'S' ? qr_text.replaceAll("Reference:", "").trim() : qr_text.trim(),
       "user_id": widget.userId,
       "scan_type": src
     };
+    print(qrParams);
 
     try {
       dynamic res = await _qrRepo.scan_qr(qrParams);
 
       if (res["resp_code"].toString() == "00") {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
+            .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
           return Success(userId: widget.userId, details: res['details']);
         }));
-      }
-      if (res["resp_code"].toString() == "027") {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
-          return NotFound(
-            userId: widget.userId,
-            description: res["resp_desc"],
-          );
-        }));
       } else {
+
+        if (res["resp_code"].toString() == "027") {
+          Navigator.of(context)
+              .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+            return NotFound(
+              userId: widget.userId,
+              description: res["resp_desc"],
+            );
+          }));
+        }
+
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
+            .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
           return Error(
             userId: widget.userId,
             response: res,
           );
         }));
       }
+
     } catch (e) {
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (BuildContext context) =>
               Error(userId: widget.userId, response: null)));
     } finally {
@@ -142,7 +146,6 @@ class _ScannerState extends State<Scanner> {
   }
 
   void _showBottomSheet() {
-    print('open now');
     showModalBottomSheet(
         useRootNavigator: true,
         context: context,

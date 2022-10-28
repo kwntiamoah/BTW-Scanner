@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:scanner_app/config/colors.dart';
+import 'package:scanner_app/generated/assets.dart';
 import 'package:scanner_app/screens/scanner.dart';
 
 class Error extends StatelessWidget {
@@ -19,7 +20,7 @@ class Error extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Lottie.asset('assets/lottie/error.json', height: 250),
+            Lottie.asset(Assets.lottieError, height: 250),
             response == null
                 ? SizedBox.shrink()
                 : SizedBox(
